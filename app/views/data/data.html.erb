@@ -1,0 +1,15 @@
+<div>
+  <canvas id="tChart" width="800" height="400"></canvas>
+</div>
+<div>
+  <canvas id="hChart" width="800" height="400"></canvas>
+</div>
+<div>
+  <canvas id="pChart" width="800" height="400"></canvas>
+</div>
+
+
+<%= javascript_tag "buildCharts(#{@all.to_json.html_safe})" %>
+
+<script>
+</script>

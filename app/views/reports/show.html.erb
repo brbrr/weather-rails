@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Temp:</strong>
+  <%= @report.temperature %>
+</p>
+
+<p>
+  <strong>Hum:</strong>
+  <%= @report.humidity %>
+</p>
+
+<p>
+  <strong>Press:</strong>
+  <%= @report.pressure %>
+</p>
+
+<%= link_to 'Back', reports_path %>
