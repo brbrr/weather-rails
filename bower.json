@@ -19,7 +19,7 @@
   "dependencies": {
     "bootstrap": "~3.3.6",
     "jquery": "~2.2.1",
-    "Chart.js": "nnnick/Chart.js#v2.0-dev",
+    "Chart.js": "chartjs#^1.0.2",
     "jquery-ui": "^1.11.4",
     "moment": "momentjs#^2.11.2"
   }

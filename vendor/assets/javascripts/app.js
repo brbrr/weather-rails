@@ -12,67 +12,83 @@ function buildCharts(jsonedData) {
     dates.push(date);
     temp_values.push(report['temperature']);
     hum_values.push(report['humidity']);
-    press_values.push(report['pressure']);
+    press_values.push(report['pressure'] / 10.0);
   });
 
   var tData = {
     labels: dates,
     datasets: [{
-      label: "Temperature data",
-      fillColor: "rgba(30,220,30,0.2)",
-      strokeColor: "rgba(30,220,30,1)",
-      pointColor: "rgba(30,220,30,1)",
-      pointStrokeColor: "#fff",
-      pointHighlightFill: "#fff",
-      pointHighlightStroke: "rgba(220,220,220,1)",
+      label: "Temperature",
+      backgroundColor: "rgba(225,0,0,0.3)",
       data: temp_values
     }]
   };
+
   var hData = {
     labels: dates,
     datasets: [{
       label: "Humidity data",
-      fillColor: "rgba(220,50,100,0.2)",
-      strokeColor: "rgba(220,50,100,1)",
-      pointColor: "rgba(220,50,100,1)",
-      pointStrokeColor: "#fff",
-      pointHighlightFill: "#fff",
-      pointHighlightStroke: "rgba(220,220,220,1)",
+      backgroundColor: "rgba(0,225,0,0.3)",
       data: hum_values
-
     }]
   };
   var pData = {
     labels: dates,
     datasets: [{
       label: "Pressure data",
-      fillColor: "rgba(50,50,180,0.2)",
-      strokeColor: "rgba(50,50,180,1)",
-      pointColor: "rgba(50,50,180,1)",
-      pointStrokeColor: "#fff",
-      pointHighlightFill: "#fff",
-      pointHighlightStroke: "rgba(220,220,220,1)",
+      backgroundColor: "rgba(0,0,225,0.3)",
       data: press_values
     }]
   };
 
   var tCtx = document.getElementById("tChart").getContext("2d");
-  var tLineChart = new Chart(tCtx, {
-      type: 'line',
-      data: tData
+  window.tLine = new Chart(tCtx, {
+    type: 'line',
+    data: tData
   });
-  // new Chart(tCtx).Line(tData);
+
   var hCtx = document.getElementById("hChart").getContext("2d");
-  var hLineChart =
-  new Chart(hCtx, {
+  window.hLine = new Chart(hCtx, {
       type: 'line',
       data: hData
-  });
-  // new Chart(hCtx).Line(hData);
+    });
   var pCtx = document.getElementById("pChart").getContext("2d");
-  var pLineChart = new Chart(pCtx, {
-      type: 'line',
-      data: pData
+  window.pLine = new Chart(pCtx, {
+    type: 'line',
+    data: pData
   });
-  // new Chart(pCtx).Line(pData);
+
+  // $.each(config.data.datasets, function(i, dataset) {
+  //         //  dataset.borderColor = randomColor(0.4);
+  //         //  dataset.backgroundColor = "rgba(225,0,0,0.8)"; //randomColor(0.5);
+  //         //  dataset.pointBorderColor = randomColor(0.7);
+  //         //  dataset.pointBackgroundColor = randomColor(0.5);
+  //         //  dataset.pointBorderWidth = 1;
+  //      });
+
+  //
+  // var tCtx = document.getElementById("tChart").getContext("2d");
+  // var tLineChart = new Chart(tCtx, {
+  //   type: 'line',
+  //   data: tData
+  // });
+  //
+  // var hCtx = document.getElementById("hChart").getContext("2d");
+  // var hLineChart = new Chart(hCtx, {
+  //     type: 'line',
+  //     data: hData
+  //   });
+  //
+  // var pCtx = document.getElementById("pChart").getContext("2d");
+  // var pLineChart = new Chart(pCtx, {
+  //   type: 'line',
+  //   data: pData
+  // });
+
+  // Update the chart
+  //     window.myLine.update();
+
+  // window.onload = function() {
+
+  // };
 };

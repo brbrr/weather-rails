@@ -33,6 +33,10 @@ gem 'puma'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# how to migrate data from development database to production database?
+# http://stackoverflow.com/questions/7291381/rails-how-to-migrate-data-from-development-sqlite3-database-to-production-mysql
+gem 'yaml_db'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -45,7 +49,6 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
-
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
