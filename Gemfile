@@ -35,7 +35,7 @@ gem 'puma'
 
 # how to migrate data from development database to production database?
 # http://stackoverflow.com/questions/7291381/rails-how-to-migrate-data-from-development-sqlite3-database-to-production-mysql
-gem 'yaml_db'
+# gem 'yaml_db'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
