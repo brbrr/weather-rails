@@ -1,4 +1,8 @@
-server '192.168.0.50', user: 'pi', roles: %w{app db web}
+# server '192.168.0.50', user: 'pi', roles: %w{app db web}
+
+role :app, %w{pi@192.168.0.50}
+role :web, %w{pi@192.168.0.50}
+role :db,  %w{pi@192.168.0.50}
 
 # server-based syntax
 # ======================
