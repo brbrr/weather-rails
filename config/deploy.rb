@@ -6,7 +6,8 @@ set :rbenv_type, :user # or :system, depends on your rbenv setup
 set :rbenv_ruby, '2.3.0'
 
 set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
-set :linked_dirs, fetch(:linked_dirs, []).push('blog', 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
+set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
+# set :linked_dirs, fetch(:linked_dirs, []).push('blog', 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
 
 # set :passenger_path, '/home/pi/.rbenv/versions/2.3.0/lib/ruby/gems/2.3.0/gems/passenger-5.0.27'
 # set :passenger_environment_variables, path: "$PATH"
@@ -15,7 +16,7 @@ set :linked_dirs, fetch(:linked_dirs, []).push('blog', 'log', 'tmp/pids', 'tmp/c
 set :puma_threads,    [4, 16]
 set :puma_workers,    0
 # set :puma_bind,       "unix://#{shared_path}/tmp/sockets/#{fetch(:application)}-puma.sock"
-set :puma_bind,       'tcp://0.0.0.0:3000'
+# set :puma_bind,       'tcp://0.0.0.0:3000'
 set :puma_state,      "#{shared_path}/tmp/pids/puma.state"
 set :puma_pid,        "#{shared_path}/tmp/pids/puma.pid"
 set :puma_access_log, "#{release_path}/log/puma.error.log"
