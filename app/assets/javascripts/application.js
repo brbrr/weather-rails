@@ -11,11 +11,8 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
 //= require_tree .
-//= require jquery-ui/jquery-ui.min
 //= require bootstrap/dist/js/bootstrap.min
-//= require moment/min/moment.min
 //= require Chart.js/dist/Chart.min
 //= require app
 //= require turbolinks

@@ -30,6 +30,19 @@ set :rbenv_ruby, '2.3.0'
 # set :keep_releases, 5
 
 namespace :deploy do
+  # namespace :assets do
+  #   before :precompile, :bower do
+  #     execute :bower, 'install', '--quiet --config.interactive=false'
+  #   end
+  # end
+  task :bower_install do
+      on roles(:app), in: :sequence, wait: 5 do
+        within release_path do
+          execute :bower, "install"
+        end
+      end
+    end
+    after :published, :bower_install
 
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
