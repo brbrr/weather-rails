@@ -33,7 +33,7 @@ module WeatherRails
     config.active_record.raise_in_transactional_callbacks = true
 
     # Used for BOWER integration via https://coderwall.com/p/hhaxlg/bower-and-rails-friends-forever
-    config.assets.paths << Rails.root.join('app', 'assets', 'components')
+    config.assets.paths << Rails.root.join('vendor', 'assets', 'components')
 
     # via https://gist.github.com/afeld/5704079
 

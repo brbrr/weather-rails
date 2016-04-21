@@ -11,8 +11,8 @@
 // about supported directives.
 //
 //= require jquery
-//= require_tree .
 //= require bootstrap/dist/js/bootstrap.min
 //= require Chart.js/dist/Chart.min
 //= require app
 //= require turbolinks
+//= require_tree .
