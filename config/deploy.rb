@@ -36,13 +36,13 @@ namespace :deploy do
   #   end
   # end
   task :bower_install do
-      on roles(:app), in: :sequence, wait: 5 do
-        within release_path do
-          execute :bower, 'install'
-        end
+    on roles(:app), in: :sequence, wait: 5 do
+      within release_path do
+        execute :bower, 'install'
       end
+    end
   end
-    after :published, :bower_install
+  after :published, :bower_install
 
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
