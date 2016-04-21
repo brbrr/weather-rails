@@ -13,5 +13,4 @@
  *= require_tree .
  *= require_self
  */
- @import "jquery-ui/themes/smoothness/jquery-ui";
  @import "bootstrap/dist/css/bootstrap.min";
