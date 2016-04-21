@@ -25,7 +25,7 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-# gem 'puma'
+gem 'puma'
 gem "passenger", require: "phusion_passenger/rack_handler"
 
 
@@ -52,7 +52,7 @@ group :development do
   gem 'capistrano-rbenv',     require: false
   gem 'capistrano-rails',   require: false
   gem 'capistrano-bundler', require: false
-  # gem 'capistrano3-puma',   require: false
+  gem 'capistrano3-puma',   require: false
   gem 'capistrano-passenger'
   gem 'capistrano-bower'
 end
