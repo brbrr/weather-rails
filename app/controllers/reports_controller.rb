@@ -49,7 +49,6 @@ class ReportsController < ApplicationController
   end
 end
 
-#
 # get '/reports/temperature' do
 #   Report.all_data_for(:temperature).to_json
 # end
