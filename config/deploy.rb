@@ -5,10 +5,12 @@ set :deploy_to,       "/var/www/#{fetch(:application)}"
 set :rbenv_type, :user # or :system, depends on your rbenv setup
 set :rbenv_ruby, '2.3.0'
 
-set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
-set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
-# set :linked_dirs, fetch(:linked_dirs, []).push('blog', 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
 
+set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
+# set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
+set :linked_dirs, fetch(:linked_dirs, []).push('blog', 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
+
+# set :passenger_in_gemfile, true
 # set :passenger_path, '/home/pi/.rbenv/versions/2.3.0/lib/ruby/gems/2.3.0/gems/passenger-5.0.27'
 # set :passenger_environment_variables, path: "$PATH"
 # set :passenger_restart_command, "passenger-config restart-app"
