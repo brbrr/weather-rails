@@ -1,22 +1,48 @@
-<style>
-div {
-  margin: 10px;
-        }
-</style>
-<div class="row">
-  <div>
-    <button class="btn btn-default" src='/data'><a href="/data">Whole recordered Data</a></button>
-  </div>
-
-  <div>
-    <button class="btn btn-default" src='/data'><a href="/data/hourly">Whole houlry Data</a></button>
-  </div>
-
-  <div>
-    <button class="btn btn-default" src='/data'><a href="/data/last24h">Data 24H</a></button>
-  </div>
-
-  <div>
-    <button class="btn btn-default" src='/data'><a href="/data/last24h_hourly">Data 24H hourly</a></button>
+<div>
+  <div class="col-md-6 col-md-offset-3">
+    <form class="form-inline">
+      <div class="form-group">
+        <label for="from">From</label>
+        <input type="text" class="form-control" id="from" placeholder="">
+      </div>
+      <div class="form-group">
+        <label for="to">To</label>
+        <input type="text" class="form-control" id="to" placeholder="">
+      </div>
+      <a id='load' class="btn btn-default">Load Charts</a>
+    </form>
   </div>
 </div>
+
+<div class="row">
+  <div class="inline col-md-4">
+    <canvas width="300" height="200" id="temp"></canvas>
+
+  </div>
+  <div class="inline col-md-4">
+    <canvas width="300" height="200" id="hum"></canvas>
+
+  </div>
+  <div class="inline col-md-4">
+    <canvas width="300" height="200" id="press"></canvas>
+
+  </div>
+</div>
+
+<!-- <div class="row">
+  <div>
+    <a href="/data" class="btn btn-default" role="button">Whole recordered Data</a>
+  </div>
+
+  <div>
+    <a href="/data/hourly" class="btn btn-default" role="button">Whole houlry Data</a>
+  </div>
+
+  <div>
+    <a href="/data/last24h" class="btn btn-default" role="button">Data 24H</a>
+  </div>
+
+  <div>
+    <a href="/data/last24h_hourly" class="btn btn-default" role="button">Data 24H hourly</a>
+  </div>
+</div> -->

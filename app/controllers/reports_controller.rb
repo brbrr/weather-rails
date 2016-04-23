@@ -5,7 +5,19 @@ class ReportsController < ApplicationController
   # GET /reports
   # GET /reports.json
   def index
-    @reports = Report.all.to_json
+    from = Time.parse(params['from'])
+    to = Time.parse(params['to'])
+    # @reports = Report.all.to_json
+    @reports = Report.where(updated_at: from..to)
+    if params['normalize']
+      @reports = normalize(@reports)
+    end
+
+    render json: @reports
+    # respond_to do |format|
+    #   format.json { render json: @reports }
+    #   format.html # index.html.erb
+    # end
   end
 
   def new
@@ -46,6 +58,30 @@ class ReportsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def report_params
     params.require(:report).permit(:temperature, :humidity, :pressure)
+  end
+
+  def normalize(all_data)
+    result = []
+    all_per_hour = [0, 0, 0, 0] #temp, humid, press, count
+    first_in_hour = all_data.first
+    all_data.each do |rec|
+      # check if rec is same hour as first_in_hour
+      if rec.created_at.hour == first_in_hour.created_at.hour
+        all_per_hour[0] += rec.temperature
+        all_per_hour[1] += rec.humidity
+        all_per_hour[2] += rec.pressure
+        all_per_hour[3] += 1
+      else # if not - get average of all the fields
+        next if all_per_hour[3] == 0
+        result.push(temperature: format('%.2f', all_per_hour[0] / all_per_hour[3]),
+                    humidity: format('%.2f', all_per_hour[1] / all_per_hour[3]),
+                    pressure: format('%.2f', all_per_hour[2] / all_per_hour[3]),
+                    created_at: first_in_hour.created_at)
+        first_in_hour = rec
+        all_per_hour = [0, 0, 0, 0]
+      end
+    end
+    result
   end
 end
 

@@ -1,12 +1,45 @@
-function buildCharts(jsonedData) {
-  // var allReports = JSON.parse(jsonedData);
+var config = {};
+config.ready = function() {
+  $( document ).ready(function() {
+      console.log( "ready!" );
+      $('#load').click(function (e) {
+          e.preventDefault();
+          updateCharts();
+      });
+      var date = new Date();
+      date.setDate(date.getDate() - 1);
+      $('#from').val(date.toString());
+      $('#to').val((new Date()).toString());
+  });
+};
 
+$(document).ready(config.ready);
+$(document).on('page:load', config.ready);
+
+function updateCharts() {
+  data = {
+    from: $('#from').val(),
+    to: $('#to').val(),
+    normalize: true
+  };
+  return $.getJSON("/reports", data, function(data) {
+    config.data = data;
+    buildCharts(data);
+  });
+};
+
+function buildCharts(data) {
+    var preparedData = prepareData(data);
+    fillCharts(preparedData);
+};
+
+function prepareData(dataObj) {
   var dates = [];
   var temp_values = [];
   var hum_values = [];
   var press_values = [];
 
-  jsonedData.forEach(function(report, key, myArray) {
+  dataObj.forEach(function(report, key, myArray) {
     var jsDate = new Date(report.created_at)
     var date = jsDate.getHours() + ":00";
     dates.push(date);
@@ -15,80 +48,38 @@ function buildCharts(jsonedData) {
     press_values.push(report['pressure'] / 10.0);
   });
 
-  var tData = {
+  var preparedData = {
+    temp: {
     labels: dates,
     datasets: [{
       label: "Temperature",
       backgroundColor: "rgba(225,0,0,0.3)",
       data: temp_values
-    }]
+    }]},
+    hum: {
+      labels: dates,
+      datasets: [{
+        label: "Humidity data",
+        backgroundColor: "rgba(0,225,0,0.3)",
+        data: hum_values
+      }]},
+    press: {
+      labels: dates,
+      datasets: [{
+        label: "Pressure data",
+        backgroundColor: "rgba(0,0,225,0.3)",
+        data: press_values
+      }]}
   };
 
-  var hData = {
-    labels: dates,
-    datasets: [{
-      label: "Humidity data",
-      backgroundColor: "rgba(0,225,0,0.3)",
-      data: hum_values
-    }]
-  };
-  var pData = {
-    labels: dates,
-    datasets: [{
-      label: "Pressure data",
-      backgroundColor: "rgba(0,0,225,0.3)",
-      data: press_values
-    }]
-  };
-
-  var tCtx = document.getElementById("tChart").getContext("2d");
-  window.tLine = new Chart(tCtx, {
-    type: 'line',
-    data: tData
-  });
-
-  var hCtx = document.getElementById("hChart").getContext("2d");
-  window.hLine = new Chart(hCtx, {
-      type: 'line',
-      data: hData
-    });
-  var pCtx = document.getElementById("pChart").getContext("2d");
-  window.pLine = new Chart(pCtx, {
-    type: 'line',
-    data: pData
-  });
-
-  // $.each(config.data.datasets, function(i, dataset) {
-  //         //  dataset.borderColor = randomColor(0.4);
-  //         //  dataset.backgroundColor = "rgba(225,0,0,0.8)"; //randomColor(0.5);
-  //         //  dataset.pointBorderColor = randomColor(0.7);
-  //         //  dataset.pointBackgroundColor = randomColor(0.5);
-  //         //  dataset.pointBorderWidth = 1;
-  //      });
-
-  //
-  // var tCtx = document.getElementById("tChart").getContext("2d");
-  // var tLineChart = new Chart(tCtx, {
-  //   type: 'line',
-  //   data: tData
-  // });
-  //
-  // var hCtx = document.getElementById("hChart").getContext("2d");
-  // var hLineChart = new Chart(hCtx, {
-  //     type: 'line',
-  //     data: hData
-  //   });
-  //
-  // var pCtx = document.getElementById("pChart").getContext("2d");
-  // var pLineChart = new Chart(pCtx, {
-  //   type: 'line',
-  //   data: pData
-  // });
-
-  // Update the chart
-  //     window.myLine.update();
-
-  // window.onload = function() {
-
-  // };
+  return preparedData;
 };
+
+function fillCharts(prepadedData) {
+  $.each(prepadedData, function(key, value) {
+    var chart = document.getElementById(key).getContext("2d");
+    window.tLine = new Chart(chart, {
+      type: "line",
+      data: value
+    });
+})};

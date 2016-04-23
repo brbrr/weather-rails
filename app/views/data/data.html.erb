@@ -1,12 +1,23 @@
+<form class="form-inline">
+  <div class="form-group">
+    <label for="from">From</label>
+    <input type="text" class="form-control" id="from" placeholder="">
+  </div>
+  <div class="form-group">
+    <label for="to">To</label>
+    <input type="text" class="form-control" id="to" placeholder="">
+  </div>
+  <a id='load' class="btn btn-default">Load Charts</a>
+</form>
+
 <div>
-  <canvas id="tChart" width="900" height="400"></canvas>
+  <canvas id="temp" width="900" height="400"></canvas>
 </div>
 <div>
-  <canvas id="hChart" width="900" height="400"></canvas>
+  <canvas id="hum" width="900" height="400"></canvas>
 </div>
 <div>
-  <canvas id="pChart" width="900" height="400"></canvas>
+  <canvas id="press" width="900" height="400"></canvas>
 </div>
 
-
-<%= javascript_tag "buildCharts(#{@all.to_json.html_safe})" %>
+<!-- <%= javascript_tag "buildCharts(#{@all.to_json.html_safe})" %> -->

@@ -26,7 +26,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'puma'
-gem "passenger", require: "phusion_passenger/rack_handler"
+# gem "passenger", require: "phusion_passenger/rack_handler"
 
 
 # Use ActiveModel has_secure_password
