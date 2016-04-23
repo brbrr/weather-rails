@@ -1,5 +1,8 @@
 class DataController < ApplicationController
   def index
+    if Report.last.updated_at < (Time.now - 6.minutes)
+      flash[:warning] = 'Sensor data was updated more than 5 minutes ago. That could be problem with it. go and check it!'
+    end
   end
 
   def all
@@ -49,6 +52,4 @@ class DataController < ApplicationController
     end
     result
   end
-
-
 end

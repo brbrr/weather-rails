@@ -9,9 +9,7 @@ class ReportsController < ApplicationController
     to = Time.parse(params['to'])
     # @reports = Report.all.to_json
     @reports = Report.where(updated_at: from..to)
-    if params['normalize']
-      @reports = normalize(@reports)
-    end
+    @reports = normalize(@reports) if params['normalize']
 
     render json: @reports
     # respond_to do |format|
@@ -62,7 +60,7 @@ class ReportsController < ApplicationController
 
   def normalize(all_data)
     result = []
-    all_per_hour = [0, 0, 0, 0] #temp, humid, press, count
+    all_per_hour = [0, 0, 0, 0] # temp, humid, press, count
     first_in_hour = all_data.first
     all_data.each do |rec|
       # check if rec is same hour as first_in_hour
