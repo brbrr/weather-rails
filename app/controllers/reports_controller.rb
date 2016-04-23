@@ -5,12 +5,14 @@ class ReportsController < ApplicationController
   # GET /reports
   # GET /reports.json
   def index
-    from = Time.parse(params['from'])
-    to = Time.parse(params['to'])
-    # @reports = Report.all.to_json
-    @reports = Report.where(updated_at: from..to)
-    @reports = normalize(@reports) if params['normalize']
-
+    if params['from']
+      from = Time.parse(params['from'])
+      to = Time.parse(params['to'])
+      @reports = Report.where(updated_at: from..to)
+      @reports = normalize(@reports) if params['normalize']
+    else
+      @reports = Report.all
+    end
     render json: @reports
     # respond_to do |format|
     #   format.json { render json: @reports }
