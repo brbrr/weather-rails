@@ -17,15 +17,19 @@ $(document).ready(config.ready);
 $(document).on('page:load', config.ready);
 
 function updateCharts() {
-  data = {
-    from: $('#from').val(),
-    to: $('#to').val(),
-    normalize: true
-  };
-  return $.getJSON("/reports", data, function(data) {
+  getRequestData();
+  return $.getJSON("/reports", config.requestData, function(data) {
     config.data = data;
     buildCharts(data);
   });
+};
+
+function getRequestData() {
+  config.requestData = {
+    from: $('#from').val(),
+    to: $('#to').val(),
+    normalize: $('#hourly').is(':checked')
+  };
 };
 
 function buildCharts(data) {

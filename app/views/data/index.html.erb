@@ -1,5 +1,4 @@
 <% flash.each do |key, value| %>
-
 <div role="alert" class="alert alert-<%= key %>">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
@@ -10,7 +9,7 @@
 <% end %>
 
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
+  <div class="col-md-8 col-md-offset-2">
     <form class="form-inline">
       <div class="form-group">
         <label for="from">From</label>
@@ -20,7 +19,16 @@
         <label for="to">To</label>
         <input type="text" class="form-control" id="to" placeholder="">
       </div>
-      <a id='load' class="btn btn-default">Load Charts</a>
+
+      <div class="form-group">
+        <div class="checkbox">
+          <label>
+            <input id='hourly' type="checkbox" checked>
+            Hourly
+          </label>
+        </div>
+      </div>
+      <button id='load' class="btn btn-default">Load Charts</button>
     </form>
   </div>
 </div>

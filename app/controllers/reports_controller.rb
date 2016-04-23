@@ -9,7 +9,7 @@ class ReportsController < ApplicationController
       from = Time.parse(params['from'])
       to = Time.parse(params['to'])
       @reports = Report.where(updated_at: from..to)
-      @reports = normalize(@reports) if params['normalize']
+      @reports = normalize(@reports) if params['normalize'] == 'true'
     else
       @reports = Report.all
     end
