@@ -4,7 +4,7 @@ class DataController < ApplicationController
     if last_record.updated_at < (Time.now - 6.minutes)
       flash.now[:warning] = 'Sensor data was updated more than 5 minutes ago. Go and check it!'
     else
-      flash.now[:success] = "Current weather is: temperature: #{last_record.temperature}, humidity: #{last_record.humidity} %, pressure: #{last_record.pressure/133} mmhg"
+      flash.now[:success] = "Current weather is: temperature: #{last_record.temperature}, humidity: #{last_record.humidity} %, pressure: #{(last_record.pressure/133).floor} mmhg"
     end
   end
 

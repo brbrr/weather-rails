@@ -18,6 +18,6 @@
   ],
   "dependencies": {
     "bootstrap": "~3.3.6",
-    "Chart.js": "chartjs#^2.0.2"
+    "chart.js": "chartjs#^2.0.2"
   }
 }
